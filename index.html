@@ -620,18 +620,27 @@
     background:var(--ink);
     padding:54px;
     margin-top:1px;
-    display:grid;
-    grid-template-columns:0.8fr 1.4fr 1fr;
-    gap:32px;
+    display:flex;
+    flex-wrap:wrap;
     align-items:center;
+    gap:32px;
     color:var(--paper);
     border:1px solid var(--ink);
   }
   .bundle-photo{
-    width:100%;
-    aspect-ratio:1/1;
+    flex:0 0 220px;
+    width:220px;
+    height:220px;
     object-fit:cover;
     border-radius:4px;
+  }
+  .bundle-text{
+    flex:1 1 320px;
+    min-width:280px;
+  }
+  .bundle-right{
+    flex:0 0 auto;
+    margin-left:auto;
   }
   @media (max-width:760px){
     .bundle-photo{display:none;}
@@ -1257,7 +1266,7 @@
 
       <div class="bundle">
         <img src="images/tote-lifestyle.jpg" alt="Full Mood Bundle tote bag with all five pins" class="bundle-photo">
-        <div>
+        <div class="bundle-text">
           <span class="script">the full</span>
           <h3>Mood Bundle</h3>
           <p>One Mood Tote, all five pins, your entire emotional range covered before 9am. The easiest way to start your collection — and the best value in the lineup.</p>
