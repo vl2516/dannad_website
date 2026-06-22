@@ -615,6 +615,77 @@
   .mood-intro .dotmark{background:var(--m-intro);}
   .mood-bag .mood-icon{background:var(--ink); color:var(--paper); border-color:var(--ink);}
 
+  /* ===================== INFO MODAL (Shipping, Track, Contact, FAQ) ===================== */
+  .info-overlay{
+    position:fixed; inset:0;
+    background:rgba(13,13,13,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    z-index:999;
+    opacity:0;
+    transition:opacity .2s;
+  }
+  .info-overlay.open{display:flex; opacity:1;}
+  .info-box{
+    background:var(--paper);
+    border:1px solid var(--ink);
+    max-width:560px;
+    width:100%;
+    max-height:80vh;
+    overflow-y:auto;
+    padding:40px 36px 36px;
+    position:relative;
+    transform:translateY(10px);
+    transition:transform .2s;
+  }
+  .info-overlay.open .info-box{transform:translateY(0);}
+  .info-close{
+    position:absolute;
+    top:18px; right:18px;
+    width:30px; height:30px;
+    border:1px solid var(--line-strong);
+    background:none;
+    cursor:pointer;
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .2s,color .2s;
+  }
+  .info-close:hover{background:var(--ink); color:var(--paper);}
+  .info-box h4{
+    font-family:'Bodoni Moda',serif;
+    font-weight:600;
+    font-size:24px;
+    margin-bottom:18px;
+    padding-right:30px;
+  }
+  .info-box p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:17px;
+    line-height:1.6;
+    color:rgba(13,13,13,0.75);
+    margin-bottom:14px;
+  }
+  .info-box a{color:var(--ink); text-decoration:underline; text-decoration-color:var(--gold);}
+  .info-box a:hover{color:var(--gold-deep);}
+  .info-box .faq-item{
+    border-top:1px solid var(--line);
+    padding:16px 0;
+  }
+  .info-box .faq-item:first-of-type{border-top:none; padding-top:0;}
+  .info-box .faq-item h5{
+    font-family:'Bodoni Moda',serif;
+    font-weight:600;
+    font-size:16px;
+    margin-bottom:6px;
+  }
+  .info-box .faq-item p{font-size:15.5px; margin-bottom:0;}
+
   /* ===================== BUNDLE BANNER ===================== */
   .bundle{
     background:var(--ink);
@@ -1004,7 +1075,7 @@
       <a href="#manifesto">Manifesto</a>
       <a href="#voices">Reviews</a>
     </div>
-    <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="nav-cta">Shop the drop</a>
+    <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="nav-cta" target="_blank" rel="noopener">Shop the drop</a>
   </div>
 </nav>
 
@@ -1133,7 +1204,7 @@
             <p>Heavyweight canvas, mood-pin-ready strap loop, room for everything you're carrying — literally and otherwise.</p>
             <div class="product-foot">
               <div class="price"><span class="from mono">From</span>SGD 38</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1148,7 +1219,7 @@
             <p>For the days you're running on 12% and not apologizing for it. Hard enamel, butterfly clutch back.</p>
             <div class="product-foot">
               <div class="price">SGD 12</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1163,7 +1234,7 @@
             <p>Manifesting until it's real. A pin for the unhinged optimists keeping it together through vibes alone.</p>
             <div class="product-foot">
               <div class="price">SGD 12</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1179,7 +1250,7 @@
             <p>Too many tabs open, in your browser and your brain. Wear it as the universal sign for "give me a minute."</p>
             <div class="product-foot">
               <div class="price">SGD 12</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1194,7 +1265,7 @@
             <p>Today the world is your background extra. Considered color, louder confidence, zero notes.</p>
             <div class="product-foot">
               <div class="price">SGD 12</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1209,7 +1280,7 @@
             <p>Headphones in, world out. The polite way to say you've reached your social quota for the day.</p>
             <div class="product-foot">
               <div class="price">SGD 12</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1226,7 +1297,7 @@
             <p>A soft, slightly buffering bear for when your thoughts take three extra seconds to load. Clip-on for bags and backpacks.</p>
             <div class="product-foot">
               <div class="price">SGD 18</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1242,7 +1313,7 @@
             <p>Permanently behind, permanently cute about it. For everyone who works best exactly one hour before it's due.</p>
             <div class="product-foot">
               <div class="price">SGD 18</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1258,7 +1329,7 @@
             <p>Running on 10% and zero apologies. The unimpressed stare for the days you're surviving, not thriving.</p>
             <div class="product-foot">
               <div class="price">SGD 18</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1273,7 +1344,7 @@
             <p>Padded protection for your device, room on the front for two pins of your choosing. Your laptop has moods too.</p>
             <div class="product-foot">
               <div class="price"><span class="from mono">From</span>SGD 32</div>
-              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link">Add →</a>
+              <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="add-link" target="_blank" rel="noopener">Add →</a>
             </div>
           </div>
         </div>
@@ -1290,7 +1361,7 @@
         <div class="bundle-right">
           <div class="bundle-was mono">WAS SGD 98</div>
           <div class="bundle-price">SGD 58</div>
-          <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="btn">Get the bundle</a>
+          <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="btn" target="_blank" rel="noopener">Get the bundle</a>
         </div>
       </div>
 
@@ -1450,26 +1521,81 @@
         <a href="#philosophy">Philosophy</a>
         <a href="#manifesto">Manifesto</a>
         <a href="#voices">Reviews</a>
-        <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop">TikTok Shop</a>
+        <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" target="_blank" rel="noopener">TikTok Shop</a>
       </div>
       <div class="footer-col">
         <h5>Support</h5>
-        <a href="#">Shipping &amp; returns</a>
-        <a href="#">Track order</a>
-        <a href="#">Contact us</a>
-        <a href="#">FAQ</a>
+        <a href="#" data-modal="shipping">Shipping &amp; returns</a>
+        <a href="#" data-modal="track">Track order</a>
+        <a href="#" data-modal="contact">Contact us</a>
+        <a href="#" data-modal="faq">FAQ</a>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Moods by DANNAD. All rights reserved.</span>
       <div class="footer-socials">
-        <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" aria-label="DANNAD on TikTok">TikTok</a>
+        <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" aria-label="DANNAD on TikTok Shop" target="_blank" rel="noopener">TikTok</a>
         <a href="#" aria-label="DANNAD on Instagram">Instagram</a>
         <a href="#" aria-label="DANNAD on YouTube">YouTube</a>
       </div>
     </div>
   </div>
 </footer>
+
+<div class="info-overlay" id="infoOverlay">
+  <div class="info-box">
+    <button class="info-close" id="infoClose" aria-label="Close">✕</button>
+    <div id="infoBody"></div>
+  </div>
+</div>
+
+<template id="modal-shipping">
+  <h4>Shipping &amp; Returns</h4>
+  <p><strong>Shipping</strong> — We currently ship within Singapore only (more regions coming soon). Orders arrive in 2–3 working days.</p>
+  <p><strong>Returns &amp; exchanges</strong> — Not the right mood? We accept returns and exchanges within 3 working days of delivery. Message us on <a href="https://www.instagram.com/dannadmoods" target="_blank" rel="noopener">Instagram</a>, <a href="https://wa.me/6587333860" target="_blank" rel="noopener">WhatsApp</a>, or <a href="mailto:dannad2516@gmail.com">email</a> to get the process started.</p>
+</template>
+
+<template id="modal-track">
+  <h4>Track Your Order</h4>
+  <p>All orders are placed and fulfilled through TikTok Shop. To check on yours, open the TikTok app and go to <strong>Profile → Orders</strong> — that's where live status and delivery updates live.</p>
+  <p>We're working on a dedicated online store and delivery partners — once that's live, tracking will move here too.</p>
+</template>
+
+<template id="modal-contact">
+  <h4>Contact Us</h4>
+  <p>Got a question, a mood to report, or an order issue? Reach us here:</p>
+  <p>Email — <a href="mailto:dannad2516@gmail.com">dannad2516@gmail.com</a></p>
+  <p>Instagram — <a href="https://www.instagram.com/dannadmoods" target="_blank" rel="noopener">@dannadmoods</a></p>
+  <p>WhatsApp — <a href="https://wa.me/6587333860" target="_blank" rel="noopener">+65 8733 3860</a></p>
+</template>
+
+<template id="modal-faq">
+  <h4>FAQ</h4>
+  <div class="faq-item">
+    <h5>How do I order?</h5>
+    <p>Everything's sold through TikTok Shop. Tap "Shop the drop" or any "Add" button and it'll take you to our TikTok profile — head to the Shop tab from there.</p>
+  </div>
+  <div class="faq-item">
+    <h5>Where do you ship?</h5>
+    <p>Singapore only for now. We're hoping to expand soon — follow us on TikTok for updates.</p>
+  </div>
+  <div class="faq-item">
+    <h5>How long does delivery take?</h5>
+    <p>2–3 working days from when your order is placed.</p>
+  </div>
+  <div class="faq-item">
+    <h5>Can I return or exchange an item?</h5>
+    <p>Yes — within 3 working days of delivery. Just message us on Instagram, WhatsApp, or email and we'll sort it out.</p>
+  </div>
+  <div class="faq-item">
+    <h5>How do I track my order?</h5>
+    <p>Open the TikTok app and check Profile → Orders for live status.</p>
+  </div>
+  <div class="faq-item">
+    <h5>What payment methods do you accept?</h5>
+    <p>Payment is handled securely through TikTok Shop's checkout at the time of purchase.</p>
+  </div>
+</template>
 
 <script>
 
@@ -1519,6 +1645,35 @@
     } else {
       nav.style.boxShadow = 'none';
     }
+  });
+
+  const infoOverlay = document.getElementById('infoOverlay');
+  const infoBody = document.getElementById('infoBody');
+  const infoClose = document.getElementById('infoClose');
+
+  function openInfoModal(key){
+    const tpl = document.getElementById('modal-' + key);
+    if(!tpl) return;
+    infoBody.innerHTML = tpl.innerHTML;
+    infoOverlay.classList.add('open');
+  }
+  function closeInfoModal(){
+    infoOverlay.classList.remove('open');
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(link=>{
+    link.addEventListener('click', e=>{
+      e.preventDefault();
+      openInfoModal(link.getAttribute('data-modal'));
+    });
+  });
+
+  infoClose.addEventListener('click', closeInfoModal);
+  infoOverlay.addEventListener('click', e=>{
+    if(e.target === infoOverlay) closeInfoModal();
+  });
+  document.addEventListener('keydown', e=>{
+    if(e.key === 'Escape') closeInfoModal();
   });
 
 </script>
