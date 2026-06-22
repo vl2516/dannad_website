@@ -1348,7 +1348,7 @@
 
       </div>
 
-      <div class="bundle">
+      <div class="bundle" id="bundle">
         <img src="images/tote-lifestyle.jpg" alt="Full Mood Bundle tote bag with all five pins" class="bundle-photo">
         <div class="bundle-text">
           <span class="script">the full</span>
@@ -1508,10 +1508,10 @@
       </div>
       <div class="footer-col">
         <h5>Shop</h5>
-        <a href="#products">Mood bags</a>
-        <a href="#products">Mood pins</a>
-        <a href="#products">Mood charms</a>
-        <a href="#products">Full bundle</a>
+        <a href="#products" data-shop-filter="bag">Mood bags</a>
+        <a href="#products" data-shop-filter="pin">Mood pins</a>
+        <a href="#products" data-shop-filter="charm">Mood charms</a>
+        <a href="#bundle">Full bundle</a>
       </div>
       <div class="footer-col">
         <h5>Brand</h5>
@@ -1644,6 +1644,13 @@
     }
   });
 
+  document.querySelectorAll('[data-shop-filter]').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      const filterValue = link.getAttribute('data-shop-filter');
+      const targetTab = document.querySelector('.tab-btn[data-filter="' + filterValue + '"]');
+      if(targetTab) targetTab.click();
+    });
+  });
   const infoOverlay = document.getElementById('infoOverlay');
   const infoBody = document.getElementById('infoBody');
   const infoClose = document.getElementById('infoClose');
