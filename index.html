@@ -690,33 +690,28 @@
   .bundle{
     background:var(--ink);
     margin-top:1px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:stretch;
     color:var(--paper);
     border:1px solid var(--ink);
+    display:grid;
+    grid-template-columns:minmax(280px,0.85fr) 1.15fr;
     overflow:hidden;
+  }
+  .bundle-media{
+    position:relative;
+    min-height:340px;
   }
   .bundle-photo{
     width:100%;
     height:100%;
-    min-height:320px;
     object-fit:cover;
+    object-position:top center;
     display:block;
   }
-  .bundle-text{
-    padding:54px;
+  .bundle-content{
+    padding:48px 56px;
     display:flex;
     flex-direction:column;
     justify-content:center;
-  }
-  .bundle-right{
-    margin-top:24px;
-  }
-  @media (max-width:760px){
-    .bundle{grid-template-columns:1fr;}
-    .bundle-photo{min-height:240px;}
-    .bundle-text{padding:32px;}
   }
   .bundle .script{
     color:var(--gold);
@@ -737,10 +732,17 @@
     line-height:1.6;
     max-width:480px;
   }
+  .bundle-footer{
+    margin-top:30px;
+    display:flex;
+    align-items:center;
+    gap:32px;
+    flex-wrap:wrap;
+  }
   .bundle-price{
     font-family:'Bodoni Moda',serif;
     font-weight:700;
-    font-size:46px;
+    font-size:40px;
     line-height:1;
     color:var(--gold);
   }
@@ -752,7 +754,6 @@
     margin-bottom:6px;
   }
   .bundle .btn{
-    margin-top:20px;
     border-color:var(--gold);
     background:var(--gold);
     color:var(--ink);
@@ -761,6 +762,12 @@
     background:var(--paper);
     border-color:var(--paper);
     color:var(--ink);
+  }
+  @media (max-width:760px){
+    .bundle{grid-template-columns:1fr;}
+    .bundle-media{min-height:280px;}
+    .bundle-content{padding:36px 28px;}
+    .bundle-footer{flex-direction:column; align-items:flex-start; gap:18px;}
   }
 
   /* ===================== MANIFESTO ===================== */
@@ -1349,14 +1356,18 @@
       </div>
 
       <div class="bundle" id="bundle">
-        <img src="images/tote-lifestyle.jpg" alt="Full Mood Bundle tote bag with all five pins" class="bundle-photo">
-        <div class="bundle-text">
+        <div class="bundle-media">
+          <img src="images/mood-bundle.jpg" alt="Mood Bundle tote bag with Introvert Mode, Main Character, Delulu, Overstimulated, and Low Battery pins" class="bundle-photo">
+        </div>
+        <div class="bundle-content">
           <span class="script">the full</span>
           <h3>Mood Bundle</h3>
           <p>One Mood Tote, all five pins, your entire emotional range covered before 9am. The easiest way to start your collection — and the best value in the lineup.</p>
-          <div class="bundle-right">
-            <div class="bundle-was mono">WAS SGD 98</div>
-            <div class="bundle-price">SGD 58</div>
+          <div class="bundle-footer">
+            <div>
+              <div class="bundle-was mono">WAS SGD 98</div>
+              <div class="bundle-price">SGD 58</div>
+            </div>
             <a href="https://vt.tiktok.com/ZSQKJwgBp/?page=TikTokShop" class="btn" target="_blank" rel="noopener">Get the bundle</a>
           </div>
         </div>
@@ -1489,11 +1500,14 @@
       <span class="script">carry your</span>
       <h2>Be the first to cop the next drop.</h2>
       <p>New moods, restocks, and TikTok Live alerts — straight to your inbox, no cap.</p>
-      <form class="cta-form" onsubmit="return false;">
-        <input type="email" placeholder="you@example.com" required>
+      <form class="cta-form" id="mlForm" action="https://assets.mailerlite.com/jsonp/2465105/forms/191061499974780152/subscribe" method="post" target="ml-hidden-frame">
+        <input type="email" name="fields[email]" placeholder="you@example.com" required>
+        <input type="hidden" name="ml-submit" value="1">
+        <input type="hidden" name="anticsrf" value="true">
         <button type="submit">Join the list</button>
       </form>
-      <p class="cta-note">NO SPAM. JUST MOOD DROPS.</p>
+      <iframe name="ml-hidden-frame" style="display:none" title="newsletter-submit"></iframe>
+      <p class="cta-note" id="ctaNote">NO SPAM. JUST MOOD DROPS.</p>
     </div>
   </section>
 
@@ -1644,6 +1658,17 @@
     }
   });
 
+  const mlForm = document.getElementById('mlForm');
+  const ctaNote = document.getElementById('ctaNote');
+  if (mlForm) {
+    mlForm.addEventListener('submit', () => {
+      setTimeout(() => {
+        mlForm.style.display = 'none';
+        if (ctaNote) ctaNote.textContent = "YOU'RE ON THE LIST. WATCH YOUR INBOX FOR THE NEXT DROP.";
+      }, 500);
+    });
+  }
+
   document.querySelectorAll('[data-shop-filter]').forEach(link=>{
     link.addEventListener('click', ()=>{
       const filterValue = link.getAttribute('data-shop-filter');
@@ -1651,6 +1676,7 @@
       if(targetTab) targetTab.click();
     });
   });
+
   const infoOverlay = document.getElementById('infoOverlay');
   const infoBody = document.getElementById('infoBody');
   const infoClose = document.getElementById('infoClose');
