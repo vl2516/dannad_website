@@ -520,7 +520,7 @@
   .product-visual img.product-photo{
     width:100%;
     height:100%;
-    object-fit:cover;
+    object-fit:contain;
   }
   .product-visual .dotmark{
     position:absolute;
@@ -781,6 +781,34 @@
     .bundle-content{padding:36px 28px;}
     .bundle-footer{flex-direction:column; align-items:flex-start; gap:18px;}
   }
+
+  /* ===================== CAROUSEL ===================== */
+  .carousel{position:absolute;inset:0;overflow:hidden;}
+  .carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity .4s ease;}
+  .carousel-slide.active{opacity:1;}
+  .carousel-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+  .carousel-btn{
+    position:absolute;top:50%;transform:translateY(-50%);
+    z-index:10;background:rgba(250,249,246,0.88);border:none;
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:18px;line-height:1;color:var(--ink);
+    transition:background .2s;padding:0;font-family:'JetBrains Mono',monospace;
+  }
+  .carousel-btn:hover{background:var(--gold);}
+  .carousel-btn.prev{left:8px;}
+  .carousel-btn.next{right:8px;}
+  .carousel-dots{
+    position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+    display:flex;gap:6px;z-index:10;
+  }
+  .carousel-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:rgba(250,249,246,0.5);border:none;cursor:pointer;
+    transition:background .2s;padding:0;
+  }
+  .carousel-dot.active{background:var(--gold);}
+  .badge-new,.badge-soon{z-index:20;}
+  .bundle-media .carousel-slide img{object-fit:contain;object-position:center;}
 
   /* ===================== MANIFESTO ===================== */
   .manifesto{
@@ -1354,7 +1382,24 @@
 
         <div class="product-card" data-cat="bag">
           <div class="product-visual mood-bag">
-            <img src="images/laptopsleeve.jpg" alt="Mood Series Laptop Sleeve in sage green" class="product-photo">
+            <div class="carousel" aria-label="Mood Series Laptop Sleeve">
+              <div class="carousel-slide active">
+                <img src="images/laptopsleeve-1.jpg" alt="Mood Series Laptop Sleeve — front" class="product-photo">
+              </div>
+              <div class="carousel-slide">
+                <img src="images/laptopsleeve-2.jpg" alt="Mood Series Laptop Sleeve — back" class="product-photo">
+              </div>
+              <div class="carousel-slide">
+                <img src="images/laptopsleeve-3.jpg" alt="Mood Series Laptop Sleeve — inside" class="product-photo">
+              </div>
+              <button class="carousel-btn prev" aria-label="Previous image">&#8249;</button>
+              <button class="carousel-btn next" aria-label="Next image">&#8250;</button>
+              <div class="carousel-dots">
+                <button class="carousel-dot active" aria-label="Image 1"></button>
+                <button class="carousel-dot" aria-label="Image 2"></button>
+                <button class="carousel-dot" aria-label="Image 3"></button>
+              </div>
+            </div>
           </div>
           <div class="product-info">
             <span class="ptype">Mood bag · laptop sleeve</span>
@@ -1371,7 +1416,24 @@
 
       <div class="bundle" id="bundle">
         <div class="bundle-media">
-          <img src="images/mood-bundle.jpg" alt="Mood Bundle tote bag with Introvert Mode, Main Character, Delulu, Overstimulated, and Low Battery pins" class="bundle-photo">
+          <div class="carousel" aria-label="Mood Bundle">
+            <div class="carousel-slide active">
+              <img src="images/mood-bundle-1.jpg" alt="Mood Bundle — view 1" class="bundle-photo">
+            </div>
+            <div class="carousel-slide">
+              <img src="images/mood-bundle-2.jpg" alt="Mood Bundle — view 2" class="bundle-photo">
+            </div>
+            <div class="carousel-slide">
+              <img src="images/mood-bundle-3.jpg" alt="Mood Bundle at USS" class="bundle-photo">
+            </div>
+            <button class="carousel-btn prev" aria-label="Previous image">&#8249;</button>
+            <button class="carousel-btn next" aria-label="Next image">&#8250;</button>
+            <div class="carousel-dots">
+              <button class="carousel-dot active" aria-label="Image 1"></button>
+              <button class="carousel-dot" aria-label="Image 2"></button>
+              <button class="carousel-dot" aria-label="Image 3"></button>
+            </div>
+          </div>
         </div>
         <div class="bundle-content">
           <span class="script">the full</span>
@@ -1718,6 +1780,24 @@
   });
   document.addEventListener('keydown', e=>{
     if(e.key === 'Escape') closeInfoModal();
+  });
+
+  document.querySelectorAll('.carousel').forEach(function(car){
+    var slides = car.querySelectorAll('.carousel-slide');
+    var dots = car.querySelectorAll('.carousel-dot');
+    var cur = 0;
+    function goTo(n){
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('active');
+      cur = (n + slides.length) % slides.length;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('active');
+    }
+    car.querySelector('.prev').addEventListener('click', function(){ goTo(cur - 1); });
+    car.querySelector('.next').addEventListener('click', function(){ goTo(cur + 1); });
+    dots.forEach(function(dot, i){
+      dot.addEventListener('click', function(){ goTo(i); });
+    });
   });
 
 </script>
